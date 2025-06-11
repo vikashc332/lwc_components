@@ -1,0 +1,102 @@
+<template>
+    <lightning-card title="Product Manager with Confirmation">
+        <div class="slds-m-around_medium">
+            <!-- Product Table -->
+            <template if:true={products.length}>
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={products} for:item="product">
+                            <tr key={product.id}>
+                                <td>
+                                    <lightning-combobox
+                                        value={product.name}
+                                        options={productOptions}
+                                        data-id={product.id}
+                                        data-field="name"
+                                        onchange={handleChange}>
+                                    </lightning-combobox>
+                                </td>
+                                <td>
+                                    <lightning-input
+                                        type="number"
+                                        value={product.quantity}
+                                        data-id={product.id}
+                                        data-field="quantity"
+                                        onchange={handleChange}>
+                                    </lightning-input>
+                                </td>
+                                <td class="slds-cell-wrap">
+                                    <lightning-button-icon
+                                        icon-name="utility:add"
+                                        title="Add Row"
+                                        onclick={addProduct}
+                                        class="slds-m-right_small">
+                                    </lightning-button-icon>
+
+                                    <lightning-button-icon
+                                        icon-name="utility:delete"
+                                        variant="destructive"
+                                        title="Delete"
+                                        onclick={confirmDeleteRow}
+                                        data-id={product.id}>
+                                    </lightning-button-icon>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+
+            <!-- Action Buttons -->
+            <div class="slds-m-top_medium">
+                <lightning-button
+                    label="Save"
+                    variant="brand"
+                    onclick={confirmSave}>
+                </lightning-button>
+
+                <lightning-button
+                    label="Delete All"
+                    variant="destructive"
+                    class="slds-m-left_small"
+                    onclick={confirmDeleteAll}>
+                </lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+
+    <!-- Confirmation Dialog -->
+    <template if:true={isDialogOpen}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 class="slds-modal__title">{dialogTitle}</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <p>{dialogMessage}</p>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button label="Cancel" onclick={cancelDialog}></lightning-button>
+                    <lightning-button label="Confirm" variant="brand" onclick={confirmDialogAction} class="slds-m-left_small"></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <!-- Success Toast Message -->
+    <template if:true={showSuccess}>
+        <div class="slds-notify slds-notify_toast slds-theme_success" role="status">
+            <div class="slds-notify__content">
+                <h2 class="slds-text-heading_small">{successMessage}</h2>
+            </div>
+        </div>
+    </template>
+</template>

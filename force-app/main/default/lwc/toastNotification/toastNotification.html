@@ -1,0 +1,48 @@
+<template>
+    <lightning-card title="Toast Notification, Modal & Spinner Demo">
+        <div class="slds-m-around_medium">
+            <!-- Toast Buttons -->
+            <lightning-button label="Show Success" onclick={showSuccessToast} class="slds-m-around_xx-small"></lightning-button>
+            <lightning-button label="Show Error" onclick={showErrorToast} class="slds-m-around_xx-small"></lightning-button>
+            <lightning-button label="Show Info" onclick={showInfoToast} class="slds-m-around_xx-small"></lightning-button>
+
+            <!-- Modal Trigger -->
+            <lightning-button label="Open Modal" variant="brand" onclick={openModal} class="slds-m-top_medium"></lightning-button>
+
+            <!-- Spinner Trigger -->
+            <lightning-button label="Start Loading" variant="neutral" onclick={startLoading} class="slds-m-top_medium"></lightning-button>
+        </div>
+
+        <!-- Spinner -->
+        <template if:true={isLoading}>
+            <div class="slds-p-around_medium slds-text-align_center">
+                <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+                <p>Loading, please wait...</p>
+            </div>
+        </template>
+    </lightning-card>
+
+    <!-- Modal Section -->
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <!-- Modal Header -->
+                <header class="slds-modal__header">
+                    <h2 class="slds-modal__title">Confirmation</h2>
+                </header>
+
+                <!-- Modal Body -->
+                <div class="slds-modal__content slds-p-around_medium">
+                    <p>Are you sure you want to perform this action?</p>
+                </div>
+
+                <!-- Modal Footer -->
+                <footer class="slds-modal__footer">
+                    <lightning-button variant="neutral" label="Cancel" onclick={closeModal}></lightning-button>
+                    <lightning-button variant="brand" label="Confirm" onclick={confirmAction} class="slds-m-left_small"></lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

@@ -1,0 +1,59 @@
+<template>
+    <lightning-card title="Spinner Loader With Modal">
+        <div class="slds-m-around_medium">
+            <!-- Open Modal Button -->
+            <lightning-button 
+                label="Show Spinner"
+                onclick={openModal}
+                class="slds-m-bottom_medium">
+            </lightning-button>
+
+            <!-- Success Message -->
+            <template if:true={showSuccess}>
+                <p class="slds-text-color_success">✅ Data saved successfully!</p>
+            </template>
+        </div>
+    </lightning-card>
+
+    <!-- Modal -->
+    <template if:true={isModalOpen}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 class="slds-modal__title">Select Option</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <!-- Dropdown -->
+                    <lightning-combobox
+                        name="options"
+                        label="Choose an option"
+                        value={selectedOption}
+                        options={options}
+                        onchange={handleChange}>
+                    </lightning-combobox>
+                </div>
+                <footer class="slds-modal__footer">
+                    <lightning-button label="Cancel" onclick={closeModal}></lightning-button>
+                    <lightning-button 
+                        variant="brand"
+                        label="Save"
+                        onclick={handleSave}
+                        disabled={isSaveDisabled}
+                        class="slds-m-left_small">
+                    </lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+    <!-- Spinner Overlay -->
+    <template if:true={isLoading}>
+        <div class="spinner-backdrop">
+            <lightning-spinner alternative-text="Processing..." size="large"></lightning-spinner>
+            <p class="slds-text-heading_small slds-text-align_center slds-m-top_medium">
+                Please wait, processing...
+            </p>
+        </div>
+    </template>
+</template>
