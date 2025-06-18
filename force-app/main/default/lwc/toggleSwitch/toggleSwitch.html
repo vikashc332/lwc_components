@@ -1,0 +1,22 @@
+<template>
+    <div class="switch-container">
+        <label class="switch">
+            <input type="checkbox" checked={isEnabled} onchange={handleToggle} />
+            <span class="slider round"></span>
+        </label>
+        <p class="status">Form Status: <strong>{statusLabel}</strong></p>
+    </div>
+
+    <div class="slds-box slds-theme_default form-grid">
+        <lightning-input label="First Name" disabled={isDisabled}></lightning-input>
+        <lightning-input label="Last Name" disabled={isDisabled}></lightning-input>
+        <lightning-input label="Email" type="email" disabled={isDisabled}></lightning-input>
+        <lightning-input label="Phone" type="tel" disabled={isDisabled}></lightning-input>
+        <lightning-input label="Company" disabled={isDisabled}></lightning-input>
+        <lightning-input label="Department" disabled={isDisabled}></lightning-input>
+        <lightning-input label="City" disabled={isDisabled}></lightning-input>
+        <lightning-input label="State" disabled={isDisabled}></lightning-input>
+        <lightning-input label="Zip Code" type="number" disabled={isDisabled}></lightning-input>
+        <lightning-input label="Country" disabled={isDisabled}></lightning-input>
+    </div>
+</template>

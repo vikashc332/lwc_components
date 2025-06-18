@@ -1,0 +1,35 @@
+<template>
+    <lightning-card title="Dual List Box Example - Fruits" icon-name="custom:custom63">
+        <div class="slds-p-around_medium">
+            <lightning-dual-listbox
+                name="fruits"
+                label="Select your favorite fruits"
+                source-label="Available"
+                selected-label="Selected"
+                field-level-help="Select one or more fruits"
+                options={fruitOptions}
+                value={selectedFruits}
+                onchange={handleFruitChange}>
+            </lightning-dual-listbox>
+        </div>
+    </lightning-card>
+
+    <lightning-card title="Dual List Box with Pre-selected Values" icon-name="custom:custom63">
+        <div class="slds-p-around_medium">
+            <lightning-dual-listbox
+                name="skills"
+                label="Select Your Skills"
+                source-label="Available Skills"
+                selected-label="Chosen Skills"
+                field-level-help="Move your known skills to the right"
+                options={skillOptions}
+                value={selectedSkills}
+                onchange={handleSkillChange}>
+            </lightning-dual-listbox>
+
+            <div class="slds-m-top_medium">
+                <lightning-button label="Save Selection" variant="brand" onclick={handleSave}></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>
