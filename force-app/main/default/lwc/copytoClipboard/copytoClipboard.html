@@ -1,0 +1,35 @@
+<template>
+    <lightning-card title="Copy to Clipboard Examples" icon-name="utility:copy">
+        <div class="slds-p-around_medium">
+
+            <!-- 1. Copy Static Text -->
+            <div class="slds-m-bottom_medium">
+                <p><strong>Example 1:</strong> </p>
+                <p class="slds-m-bottom_x-small">"Welcome vikash</p>
+                <lightning-button label="Copy Text" onclick={copyStaticText}></lightning-button>
+            </div>
+
+            <!-- 2. Copy User Input -->
+            <div class="slds-m-bottom_medium">
+                <p><strong>Example 2:</strong> User Input</p>
+                <lightning-input label="Type something to copy" value={userInput} onchange={handleInputChange}></lightning-input>
+                <lightning-button label="Copy Input" class="slds-m-top_small" onclick={copyUserInput}></lightning-button>
+            </div>
+
+            <!-- 3. Copy Pre-filled Field (Email) -->
+            <div class="slds-m-bottom_medium">
+                <p><strong>Example 3:</strong> Copy Pre-filled Field</p>
+                <lightning-input label="Email Address" value={emailAddress} disabled></lightning-input>
+                <lightning-button label="Copy Email" class="slds-m-top_small" onclick={copyEmail}></lightning-button>
+            </div>
+
+            <!-- 4. Copy Dynamic ID -->
+            <div class="slds-m-bottom_medium">
+               <p><strong>Example 4:</strong> Copy Generated Code</p>
+              <p class="slds-text-heading_small">{dynamicCode}</p>
+              <lightning-button label="Copy Code" onclick={copyDynamicCode}></lightning-button>
+            </div>
+
+        </div>
+    </lightning-card>
+</template>
