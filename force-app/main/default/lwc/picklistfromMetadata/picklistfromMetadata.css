@@ -1,0 +1,9 @@
+:host {
+    display: block;
+    margin: 1rem;
+}
+
+lightning-combobox {
+    width: 100%;
+    max-width: 400px;
+}
