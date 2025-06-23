@@ -1,0 +1,108 @@
+<template>
+    <lightning-card title="Dynamic Rows with Inline Add/Delete">
+        <div class="slds-p-around_medium">
+
+            <!-- Row Loop -->
+            <template for:each={rows} for:item="row">
+                <div key={row.id} class="slds-grid slds-gutters slds-m-bottom_small">
+
+                    <!-- Product Name -->
+                    <div class="slds-col slds-size_1-of-5">
+                        <lightning-combobox
+                            label="Product Name"
+                            value={row.productName}
+                            options={productOptions}
+                            onchange={handleChange}
+                            data-id={row.id}
+                            data-field="productName">
+                        </lightning-combobox>
+                    </div>
+
+                    <!-- Type -->
+                    <div class="slds-col slds-size_1-of-5">
+                        <lightning-combobox
+                            label="Type"
+                            value={row.type}
+                            options={typeOptions}
+                            onchange={handleChange}
+                            data-id={row.id}
+                            data-field="type">
+                        </lightning-combobox>
+                    </div>
+
+                    <!-- Quantity -->
+                    <div class="slds-col slds-size_1-of-5">
+                        <lightning-combobox
+                            label="Quantity"
+                            value={row.qty}
+                            options={quantityOptions}
+                            onchange={handleChange}
+                            data-id={row.id}
+                            data-field="qty">
+                        </lightning-combobox>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="slds-col slds-size_1-of-5">
+                        <lightning-combobox
+                            label="Price"
+                            value={row.price}
+                            options={priceOptions}
+                            onchange={handleChange}
+                            data-id={row.id}
+                            data-field="price">
+                        </lightning-combobox>
+                    </div>
+
+                    <!-- Add/Delete Icons -->
+                    <div class="slds-col slds-size_1-of-5 slds-align-middle">
+                        <lightning-button-icon
+                            icon-name="utility:add"
+                            alternative-text="Add Row"
+                            title="Add Row"
+                            onclick={addRow}
+                            variant="brand"
+                            class="slds-m-right_x-small">
+                        </lightning-button-icon>
+
+                        <lightning-button-icon
+                            icon-name="utility:delete"
+                            alternative-text="Delete Row"
+                            title="Delete Row"
+                            onclick={handleDelete}
+                            data-id={row.id}
+                            variant="destructive">
+                        </lightning-button-icon>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Buttons Section -->
+            <div class="slds-m-top_medium">
+                <lightning-button
+                    label="Add Row"
+                    onclick={addRow}
+                    icon-name="utility:add"
+                    variant="brand"
+                    class="slds-m-right_small">
+                </lightning-button>
+
+                <lightning-button
+                    label="Delete Last Row"
+                    onclick={deleteLastRow}
+                    icon-name="utility:delete"
+                    variant="destructive"
+                    class="slds-m-right_small">
+                </lightning-button>
+
+                <lightning-button
+                    label="Save"
+                    onclick={handleSave}
+                    icon-name="utility:save"
+                    variant="success">
+                </lightning-button>
+            </div>
+
+        </div>
+    </lightning-card>
+</template>
