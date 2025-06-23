@@ -1,0 +1,48 @@
+<template>
+    <lightning-card title="Record Selector">
+        <div class="slds-p-around_medium">
+            <lightning-combobox
+                name="objectSelector"
+                label="Select Object"
+                value={selectedObject}
+                placeholder="Select Object"
+                options={objectOptions}
+                onchange={handleObjectChange}>
+            </lightning-combobox>
+
+            <template if:true={recordOptions}>
+                <lightning-combobox
+                    name="recordSelector"
+                    label="Select Record"
+                    value={selectedRecordId}
+                    placeholder="Select Record"
+                    options={recordOptions}
+                    onchange={handleRecordChange}>
+                </lightning-combobox>
+            </template>
+
+            <template if:true={recordDetail}>
+                <div class="slds-box slds-m-top_medium">
+                    <template if:true={recordDetail.Name}>
+                        <p><strong>Name:</strong> {recordDetail.Name}</p>
+                    </template>
+                    <template if:true={recordDetail.Company}>
+                        <p><strong>Company:</strong> {recordDetail.Company}</p>
+                    </template>
+                     <template if:true={recordDetail.Phone}>
+                        <p><strong>Phone:</strong> {recordDetail.Phone}</p>
+                         </template>
+                    <template if:true={recordDetail.Email}>
+                        <p><strong>Email:</strong> {recordDetail.Email}</p>
+                    </template>
+                    <template if:true={recordDetail.StageName}>
+                        <p><strong>Stage:</strong> {recordDetail.StageName}</p>
+                    </template>
+                    <template if:true={recordDetail.Amount}>
+                        <p><strong>Amount:</strong> {recordDetail.Amount}</p>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
