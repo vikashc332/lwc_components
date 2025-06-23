@@ -1,0 +1,70 @@
+<template>
+    <div class="container">
+        <h2>{currentStageLabel}</h2>
+
+        <lightning-progress-indicator current-step={currentStageValue} type="base" variant="base">
+            <template for:each={stages} for:item="step">
+                <lightning-progress-step key={step.value}
+                                         label={step.label}
+                                         value={step.value}>
+                </lightning-progress-step>
+            </template>
+        </lightning-progress-indicator>
+
+        <div class="form-section">
+            <!-- Stage 1: Personal Info -->
+            <template if:true={isStageOne}>
+                <lightning-input label="First Name" value={formData.firstName} onchange={handleChange} data-id="firstName"></lightning-input>
+                <lightning-input label="Last Name" value={formData.lastName} onchange={handleChange} data-id="lastName"></lightning-input>
+                <lightning-input type="date" label="Date of Birth" value={formData.dob} onchange={handleChange} data-id="dob"></lightning-input>
+                <lightning-combobox label="Gender" value={formData.gender} placeholder="Select Gender" data-id="gender"
+                                    options={genderOptions} onchange={handleChange}></lightning-combobox>
+            </template>
+
+            <!-- Stage 2: Contact -->
+            <template if:true={isStageTwo}>
+                <lightning-input type="email" label="Email" value={formData.email} onchange={handleChange} data-id="email"></lightning-input>
+                <lightning-input type="tel" label="Phone" value={formData.phone} onchange={handleChange} data-id="phone"></lightning-input>
+                <lightning-textarea label="Address" value={formData.address} onchange={handleChange} data-id="address"></lightning-textarea>
+            </template>
+
+            <!-- Stage 3: Employment -->
+            <template if:true={isStageThree}>
+                <lightning-input label="Job Title" value={formData.jobTitle} onchange={handleChange} data-id="jobTitle"></lightning-input>
+                <lightning-input label="Company" value={formData.company} onchange={handleChange} data-id="company"></lightning-input>
+                <lightning-input type="number" label="Years of Experience" value={formData.experience} onchange={handleChange} data-id="experience"></lightning-input>
+            </template>
+
+            <!-- Stage 4: Preference -->
+            <template if:true={isStageFour}>
+                <lightning-input label="Preferred Location" value={formData.location} onchange={handleChange} data-id="location"></lightning-input>
+                <lightning-input label="Budget (₹)" value={formData.budget} onchange={handleChange} data-id="budget"></lightning-input>
+                <lightning-combobox label="Property Type" value={formData.propertyType} data-id="propertyType"
+                                    options={propertyTypeOptions} onchange={handleChange}></lightning-combobox>
+            </template>
+
+            <!-- Stage 5: Review -->
+            <template if:true={isStageFive}>
+                <div class="review">
+                    <p><b>Name:</b> {formData.firstName} {formData.lastName}</p>
+                    <p><b>DOB:</b> {formData.dob}</p>
+                    <p><b>Gender:</b> {formData.gender}</p>
+                    <p><b>Email:</b> {formData.email}</p>
+                    <p><b>Phone:</b> {formData.phone}</p>
+                    <p><b>Address:</b> {formData.address}</p>
+                    <p><b>Job Title:</b> {formData.jobTitle}</p>
+                    <p><b>Company:</b> {formData.company}</p>
+                    <p><b>Experience:</b> {formData.experience} years</p>
+                    <p><b>Preferred Location:</b> {formData.location}</p>
+                    <p><b>Budget:</b> ₹{formData.budget}</p>
+                    <p><b>Property Type:</b> {formData.propertyType}</p>
+                </div>
+            </template>
+        </div>
+
+        <div class="button-group">
+            <lightning-button label="Back" onclick={handleBack} disabled={isFirstStage}></lightning-button>
+            <lightning-button label={nextButtonLabel} variant="brand" onclick={handleNext}></lightning-button>
+        </div>
+    </div>
+</template>

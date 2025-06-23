@@ -1,0 +1,19 @@
+.container {
+    background: #f4f4f4;
+    padding: 1rem;
+    border-radius: 8px;
+}
+.form-section {
+    background: white;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+}
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+.review p {
+    margin: 0.3rem 0;
+}
